@@ -1,8 +1,5 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:path_provider/path_provider.dart';
 
 class PDFViewerScreen extends StatefulWidget {
   final String filePath;
@@ -40,7 +37,7 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
             onRender: (pages) {
               setState(() {
                 _isLoading = false;
-                _totalPages = pages;
+                _totalPages = pages!;
               });
             },
             onError: (error) {
@@ -81,7 +78,7 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
 
   @override
   void dispose() {
-    _pdfViewController?.dispose();
+    // _pdfViewController?.dispose();
     super.dispose();
   }
 }

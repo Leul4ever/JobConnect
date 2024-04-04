@@ -4,11 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:project1/Employers/models/jobs_model.dart';
 import 'package:project1/job_seeker_home_page/filter.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../Employers/home_page/detail_page.dart';
-import 'package:rxdart/rxdart.dart';
 
 class JobsList extends StatefulWidget {
   @override
@@ -319,9 +318,10 @@ class _JobsListState extends State<JobsList> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: TextButton(
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextButton(
                         onPressed: () {
                           setState(() {
                             isJobTitleMatched = false;
@@ -329,68 +329,67 @@ class _JobsListState extends State<JobsList> {
                             selectRecommended = false;
                           });
                         },
-                        child: Text('See all')),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.filter_list),
-                          onPressed: toggleFilterVisibility,
-                        ),
-                        Visibility(
-                          visible: isFilterVisible,
-                          child: DropdownButton<String>(
-                            value: selectedCategory,
-                            onChanged: (newValue) {
-                              setState(() {
-                                selectedCategory = newValue!;
-                                dropDownSelected = true;
-                              });
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => OverlayScreen()),
-                              // );
-
-                              switch ('${selectedCategory}') {
-                                case 'All':
-                                  return null;
-                                case 'Region':
-                                  return openAlertDialog(Regions, Icons.public);
-                                case 'City':
-                                  return openAlertDialog(
-                                      cities, Icons.location_city);
-                                case 'Education level':
-                                  return openAlertDialog(
-                                      educationLevel, Icons.school);
-                                case 'Employment type':
-                                  return openAlertDialog(
-                                      employmentType, Icons.work);
-                                // case 'Company name':
-                                //   return openAlertDialog(
-                                //       companyName, Icons.business);
-
-                                default:
-                                  return null;
-                              }
-                            },
-                            items: categories
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ],
+                        child: Text('See all'),
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: TextButton(
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.filter_list),
+                            onPressed: toggleFilterVisibility,
+                          ),
+                          Visibility(
+                            visible: isFilterVisible,
+                            child: DropdownButton<String>(
+                              value: selectedCategory,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  selectedCategory = newValue!;
+                                  dropDownSelected = true;
+                                });
+                                switch ('${selectedCategory}') {
+                                  case 'All':
+                                    return null;
+                                  case 'Region':
+                                    return openAlertDialog(
+                                        Regions, Icons.public);
+                                  case 'City':
+                                    return openAlertDialog(
+                                        cities, Icons.location_city);
+                                  case 'Education level':
+                                    return openAlertDialog(
+                                        educationLevel, Icons.school);
+                                  case 'Employment type':
+                                    return openAlertDialog(
+                                        employmentType, Icons.work);
+                                  // case 'Company name':
+                                  //   return openAlertDialog(
+                                  //       companyName, Icons.business);
+                                  default:
+                                    return null;
+                                }
+                              },
+                              items: categories.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextButton(
                         onPressed: () {
                           final profile = FirebaseFirestore.instance
                               .collection('job-seeker')
@@ -402,7 +401,9 @@ class _JobsListState extends State<JobsList> {
                             selectRecommended = true;
                           });
                         },
-                        child: Text('Recommended')),
+                        child: Text('Recommended'),
+                      ),
+                    ),
                   ),
                 ],
               ),

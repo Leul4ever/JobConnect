@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-import './education.dart';
-import '../models/job_seeker_profile_model.dart';
-import '../models/job_seeker_profile_model.dart';
+// import '../models/job_seeker_profile_model.dart';
+// import '../models/job_seeker_profile_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+import '../jobSeekerModel/job_seeker_profile_model.dart';
+import 'datepicker.dart';
+import 'experience.dart';
 
 class personal_info extends StatefulWidget {
   const personal_info({Key? key}) : super(key: key);
@@ -16,7 +19,7 @@ class _personal_infoState extends State<personal_info> {
   Future savePesonalInfo(PersonalInfo personalinfo) async {
     final personal_info_doc =
         FirebaseFirestore.instance.collection('job seeker').doc();
-    final json = personalinfo.toJeson();
+    final json = personalinfo.toJson();
     await personal_info_doc
         .collection('profile')
         .doc('personal_info')
@@ -312,7 +315,7 @@ class _EducationFormState extends State<EducationForm> {
         .doc('personal_info')
         .collection('education')
         .doc();
-    final json = educationinfo.toJeson();
+    final json = educationinfo.toJson();
     await education_doc.set(json);
   }
 
@@ -510,65 +513,51 @@ class _EducationFormState extends State<EducationForm> {
   }
 }
 
+// Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               children: [
+//                 Form(
+//                   child: DateTimeField(
+//                       decoration: InputDecoration(
+//                         constraints: BoxConstraints(
+//                             maxWidth: MediaQuery.of(context).size.width / 3),
+//                         border: OutlineInputBorder(),
+//                         suffixIcon: Icon(Icons.event_note),
+//                         labelText: 'Start date',
+//                       ),
+//                       // firstDate: DateTime.now().add(const Duration(days: 20)),
+//                       // initialDate: DateTime.now().add(const Duration(days: 10)),
+//                       // lastDate: DateTime.now().add(const Duration(days: 40)),
+//                       onDateSelected: (value) {
+//                         setState(() {
+//                           startDateController = value;
+//                         });
+//                       },
+//                       selectedDate: DateTime.now()),
+//                 ),
+//                 Form(
+//                   child: DateTimeField(
+//                       decoration: InputDecoration(
+//                         constraints: BoxConstraints(
+//                             maxWidth: MediaQuery.of(context).size.width / 3),
+//                         border: OutlineInputBorder(),
+//                         suffixIcon: Icon(Icons.event_note),
+//                         labelText: 'End date',
+//                       ),
+//                       // firstDate: DateTime.now().add(const Duration(days: 20)),
+//                       // initialDate: DateTime.now().add(const Duration(days: 10)),
+//                       // lastDate: DateTime.now().add(const Duration(days: 40)),
+//                       onDateSelected: (value) {
+//                         setState(() {
+//                           endDateController = value;
+//                         });
+//                       },
+//                       selectedDate: DateTime.now()),
+//                 ),
+//               ],
+//             ),
 
-
-
-
-
-
-
-
-
-
-  // Row(
-  //               mainAxisAlignment: MainAxisAlignment.spaceAround,
-  //               children: [
-  //                 Form(
-  //                   child: DateTimeField(
-  //                       decoration: InputDecoration(
-  //                         constraints: BoxConstraints(
-  //                             maxWidth: MediaQuery.of(context).size.width / 3),
-  //                         border: OutlineInputBorder(),
-  //                         suffixIcon: Icon(Icons.event_note),
-  //                         labelText: 'Start date',
-  //                       ),
-  //                       // firstDate: DateTime.now().add(const Duration(days: 20)),
-  //                       // initialDate: DateTime.now().add(const Duration(days: 10)),
-  //                       // lastDate: DateTime.now().add(const Duration(days: 40)),
-  //                       onDateSelected: (value) {
-  //                         setState(() {
-  //                           startDateController = value;
-  //                         });
-  //                       },
-  //                       selectedDate: DateTime.now()),
-  //                 ),
-  //                 Form(
-  //                   child: DateTimeField(
-  //                       decoration: InputDecoration(
-  //                         constraints: BoxConstraints(
-  //                             maxWidth: MediaQuery.of(context).size.width / 3),
-  //                         border: OutlineInputBorder(),
-  //                         suffixIcon: Icon(Icons.event_note),
-  //                         labelText: 'End date',
-  //                       ),
-  //                       // firstDate: DateTime.now().add(const Duration(days: 20)),
-  //                       // initialDate: DateTime.now().add(const Duration(days: 10)),
-  //                       // lastDate: DateTime.now().add(const Duration(days: 40)),
-  //                       onDateSelected: (value) {
-  //                         setState(() {
-  //                           endDateController = value;
-  //                         });
-  //                       },
-  //                       selectedDate: DateTime.now()),
-  //                 ),
-  //               ],
-  //             ),
-
-
-
-
-
-  //###################### skills.dart   ######################
+//###################### skills.dart   ######################
 
 // import 'dart:io';
 

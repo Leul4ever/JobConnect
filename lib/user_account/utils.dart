@@ -9,9 +9,13 @@ class Utils {
     if (text == null) return;
     final snackBar = SnackBar(
       content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start, // Adjust MainAxisAlignment
         children: [
-          Text(text),
+          Flexible(
+            // Wrap with Flexible
+            child: Text(text),
+          ),
+          SizedBox(width: 8), // Add SizedBox for spacing
           Icon(
             Icons.check,
             color: Colors.white,
