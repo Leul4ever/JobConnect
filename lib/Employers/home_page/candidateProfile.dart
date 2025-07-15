@@ -156,7 +156,7 @@ class candidateProfile extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
+                            backgroundColor: Colors.red,
                           ),
                           child: Text('Reject'),
                         ),
@@ -166,7 +166,7 @@ class candidateProfile extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
+                            backgroundColor: Colors.blue,
                           ),
                           child: Text('Schedule Interview'),
                         ),

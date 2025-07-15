@@ -156,7 +156,7 @@ class ApplicantPage extends StatelessWidget {
                             ChooseCandidate(jobId, applicant_id);
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
+                            backgroundColor: Colors.green,
                           ),
                           child: Text('Shortlist'),
                         ),
@@ -166,7 +166,7 @@ class ApplicantPage extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
+                            backgroundColor: Colors.red,
                           ),
                           child: Text('Reject'),
                         ),
@@ -176,7 +176,7 @@ class ApplicantPage extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
+                            backgroundColor: Colors.blue,
                           ),
                           child: Text('Schedule Interview'),
                         ),

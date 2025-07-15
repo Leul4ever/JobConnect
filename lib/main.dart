@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project1/Employers/Employers_account/emp_register.dart';
 import 'package:project1/Employers/Employers_account/emp_verify.dart';
@@ -89,8 +88,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.indigo,
         primarySwatch: Colors.blue,
-        backgroundColor: Colors.blue,
-        errorColor: Colors.red,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          error: Colors.red,
+        ),
       ),
       home: MyHomePage(),
       routes: {

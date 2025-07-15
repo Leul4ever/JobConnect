@@ -359,10 +359,6 @@ class _Job_detailState extends State<Job_detail> {
               child: TextButton(
                   onPressed: () {
                     _handleApplyButtonTap(widget.job);
-                    style:
-                    ElevatedButton.styleFrom(
-                      onSurface: Colors.brown,
-                    );
                   },
                   child: Text(
                     'Apply',
